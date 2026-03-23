@@ -1,24 +1,48 @@
+function transitionTo(url, delay = 420) {
+  const page = document.querySelector(".page");
+  if (page) {
+    page.classList.remove("enter");
+    page.classList.add("exit");
+    setTimeout(() => {
+      window.location.href = url;
+    }, delay);
+    return;
+  }
+
+  window.location.href = url;
+}
+
+function initPageTransition() {
+  const page = document.querySelector(".page");
+  if (!page) return;
+
+  requestAnimationFrame(() => {
+    page.classList.add("enter");
+  });
+}
+
 function startExperience() {
-  window.location.href = "q1.html";
+  transitionTo("q1.html");
 }
 
 function playMusic() {
   const music = document.getElementById("bgMusic");
-  music.play();
+  if (music) {
+    music.play();
+  }
 }
 
-// New functions for q1
 function goBatman() {
-  window.location.href = "batman.html";
+  transitionTo("batman.html");
 }
 
 function goWrong() {
   alert("Ouch 😭 okay... that hurt. I deserve that one.");
-  window.location.href = "final.html";
+  transitionTo("final.html");
 }
 
 function nextQuestion() {
-  window.location.href = "q2.html";
+  transitionTo("q2.html");
 }
 
 function missYes() {
@@ -26,8 +50,8 @@ function missYes() {
     "That makes two of us ❤️ I really missed you too, Faith.";
 
   setTimeout(() => {
-    window.location.href = "final.html";
-  }, 2000);
+    transitionTo("final.html");
+  }, 1000);
 }
 
 function missNo() {
@@ -35,8 +59,8 @@ function missNo() {
     "Hmm… I don’t believe you 😅 but I’ll accept it for now.";
 
   setTimeout(() => {
-    window.location.href = "final.html";
-  }, 2000);
+    transitionTo("final.html");
+  }, 1000);
 }
 
 function forgive() {
@@ -49,3 +73,5 @@ function moveButton(btn) {
   btn.style.top = Math.random() * 80 + "%";
   btn.style.left = Math.random() * 80 + "%";
 }
+
+document.addEventListener("DOMContentLoaded", initPageTransition);

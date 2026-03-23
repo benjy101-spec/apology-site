@@ -1,0 +1,262 @@
+:root {
+  --bg-1: #ff2d55;
+  --bg-2: #ff4d6d;
+  --bg-3: #ff758f;
+  --panel: rgba(255, 255, 255, 0.14);
+  --panel-border: rgba(255, 255, 255, 0.35);
+  --text: #ffffff;
+  --text-soft: rgba(255, 255, 255, 0.9);
+  --btn-yes: #ffffff;
+  --btn-yes-text: #d80032;
+  --btn-no: rgba(255, 255, 255, 0.18);
+  --shadow: 0 12px 35px rgba(90, 0, 20, 0.35);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--text);
+  overflow: hidden;
+}
+
+body {
+  position: relative;
+  display: grid;
+  place-items: center;
+  background: radial-gradient(circle at 20% 20%, var(--bg-3), transparent 45%),
+    radial-gradient(circle at 80% 80%, #ff8fab, transparent 40%),
+    linear-gradient(135deg, var(--bg-1), var(--bg-2));
+  animation: bgPulse 8s ease-in-out infinite alternate;
+}
+
+body::before,
+body::after {
+  content: "";
+  position: absolute;
+  inset: -20%;
+  pointer-events: none;
+}
+
+body::before {
+  background-image:
+    radial-gradient(circle at 12% 110%, rgba(255, 255, 255, 0.45) 0 8px, transparent 9px),
+    radial-gradient(circle at 28% 120%, rgba(255, 255, 255, 0.35) 0 10px, transparent 11px),
+    radial-gradient(circle at 48% 108%, rgba(255, 255, 255, 0.4) 0 9px, transparent 10px),
+    radial-gradient(circle at 66% 118%, rgba(255, 255, 255, 0.35) 0 7px, transparent 8px),
+    radial-gradient(circle at 84% 112%, rgba(255, 255, 255, 0.4) 0 11px, transparent 12px);
+  animation: bubblesUp 16s linear infinite;
+  opacity: 0.6;
+}
+
+body::after {
+  background-image:
+    radial-gradient(circle at 8% 115%, rgba(255, 255, 255, 0.35) 0 6px, transparent 7px),
+    radial-gradient(circle at 22% 125%, rgba(255, 255, 255, 0.4) 0 8px, transparent 9px),
+    radial-gradient(circle at 38% 117%, rgba(255, 255, 255, 0.3) 0 6px, transparent 7px),
+    radial-gradient(circle at 55% 122%, rgba(255, 255, 255, 0.4) 0 8px, transparent 9px),
+    radial-gradient(circle at 72% 116%, rgba(255, 255, 255, 0.32) 0 7px, transparent 8px),
+    radial-gradient(circle at 90% 124%, rgba(255, 255, 255, 0.4) 0 9px, transparent 10px);
+  animation: bubblesUp 21s linear infinite reverse;
+  opacity: 0.45;
+}
+
+.page {
+  position: relative;
+  width: min(92vw, 760px);
+  perspective: 1200px;
+  z-index: 1;
+  opacity: 0;
+  transform: translateY(22px) scale(0.98);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+
+.page.enter {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.page.exit {
+  opacity: 0;
+  transform: translateY(-16px) scale(0.98);
+}
+
+.container {
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  border-radius: 24px;
+  box-shadow: var(--shadow);
+  padding: 2rem 2rem 1.7rem;
+  text-align: center;
+  animation: floatIn 0.9s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+h1 {
+  margin: 0 0 0.8rem;
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  line-height: 1.1;
+  text-shadow: 0 4px 18px rgba(90, 0, 20, 0.35);
+}
+
+p {
+  margin: 0.55rem 0;
+  font-size: clamp(1rem, 1.8vw, 1.15rem);
+  color: var(--text-soft);
+}
+
+strong {
+  color: #ffffff;
+}
+
+button {
+  border: 0;
+  margin: 0.8rem 0.45rem 0.2rem;
+  padding: 0.78rem 1.15rem;
+  border-radius: 999px;
+  font-size: 0.98rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.25s ease, background 0.3s ease;
+  box-shadow: 0 8px 20px rgba(90, 0, 20, 0.25);
+}
+
+button:hover {
+  transform: translateY(-2px) scale(1.02);
+}
+
+button:active {
+  transform: translateY(0) scale(0.98);
+}
+
+button:first-of-type {
+  background: var(--btn-yes);
+  color: var(--btn-yes-text);
+}
+
+button:not(:first-of-type) {
+  background: var(--btn-no);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+#response,
+#finalResponse {
+  min-height: 1.3em;
+  margin-top: 0.9rem;
+  font-weight: 600;
+  color: #fff;
+  text-shadow: 0 2px 12px rgba(90, 0, 20, 0.25);
+}
+
+.hearts {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.heart {
+  position: absolute;
+  bottom: -40px;
+  width: 18px;
+  height: 18px;
+  background: rgba(255, 255, 255, 0.8);
+  transform: rotate(45deg);
+  animation: rise linear infinite;
+  filter: drop-shadow(0 3px 8px rgba(110, 0, 30, 0.3));
+}
+
+.heart::before,
+.heart::after {
+  content: "";
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  background: inherit;
+  border-radius: 50%;
+}
+
+.heart::before {
+  left: -9px;
+}
+
+.heart::after {
+  top: -9px;
+}
+
+.heart:nth-child(1) { left: 6%; animation-duration: 12s; animation-delay: -2s; opacity: 0.55; }
+.heart:nth-child(2) { left: 16%; animation-duration: 10s; animation-delay: -5s; opacity: 0.7; transform: scale(0.8) rotate(45deg); }
+.heart:nth-child(3) { left: 28%; animation-duration: 13.5s; animation-delay: -1s; opacity: 0.5; transform: scale(1.2) rotate(45deg); }
+.heart:nth-child(4) { left: 40%; animation-duration: 11s; animation-delay: -7s; opacity: 0.65; }
+.heart:nth-child(5) { left: 52%; animation-duration: 14s; animation-delay: -4s; opacity: 0.45; transform: scale(1.1) rotate(45deg); }
+.heart:nth-child(6) { left: 63%; animation-duration: 9.5s; animation-delay: -3s; opacity: 0.72; transform: scale(0.85) rotate(45deg); }
+.heart:nth-child(7) { left: 74%; animation-duration: 15s; animation-delay: -6s; opacity: 0.5; transform: scale(1.25) rotate(45deg); }
+.heart:nth-child(8) { left: 85%; animation-duration: 10.5s; animation-delay: -8s; opacity: 0.68; }
+.heart:nth-child(9) { left: 93%; animation-duration: 12.5s; animation-delay: -2.8s; opacity: 0.52; transform: scale(0.9) rotate(45deg); }
+
+@keyframes rise {
+  0% {
+    transform: translateY(0) translateX(0) rotate(45deg);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.85;
+  }
+  50% {
+    transform: translateY(-48vh) translateX(16px) rotate(55deg);
+  }
+  100% {
+    transform: translateY(-110vh) translateX(-14px) rotate(35deg);
+    opacity: 0;
+  }
+}
+
+@keyframes bubblesUp {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-18%);
+  }
+}
+
+@keyframes floatIn {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes bgPulse {
+  from {
+    filter: saturate(1) brightness(1);
+  }
+  to {
+    filter: saturate(1.15) brightness(1.07);
+  }
+}
+
+@media (max-width: 560px) {
+  .container {
+    padding: 1.35rem 1rem 1.2rem;
+    border-radius: 18px;
+  }
+
+  button {
+    width: calc(100% - 1rem);
+    margin: 0.5rem 0.5rem 0.1rem;
+  }
+}
