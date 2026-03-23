@@ -74,4 +74,41 @@ function moveButton(btn) {
   btn.style.left = Math.random() * 80 + "%";
 }
 
-document.addEventListener("DOMContentLoaded", initPageTransition);
+function initEnvelopeIntro() {
+  const overlay = document.getElementById("introOverlay");
+  const envelope = document.getElementById("envelope");
+  const page = document.querySelector(".page");
+  const music = document.getElementById("bgMusic");
+
+  if (!overlay || !envelope || !page) {
+    initPageTransition();
+    return;
+  }
+
+  const openIntro = () => {
+    if (envelope.classList.contains("open")) return;
+
+    envelope.classList.add("open");
+
+    if (music) {
+      music.volume = 0.6;
+      music.play().catch(() => {});
+    }
+
+    setTimeout(() => {
+      overlay.classList.add("hidden");
+      page.classList.add("enter");
+      page.classList.remove("pre-intro");
+    }, 700);
+  };
+
+  overlay.addEventListener("click", openIntro);
+  overlay.addEventListener("keydown", (event) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      openIntro();
+    }
+  });
+}
+
+document.addEventListener("DOMContentLoaded", initEnvelopeIntro);
