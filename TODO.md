@@ -1,5 +1,4 @@
-- [x] Add hidden digital flower block and flowers message in final.html
-- [x] Update style.css to enlarge content boxes and keep all content centered in middle
-- [x] Add spinning flower animation styles
-- [x] Update script.js forgive() to reveal flower after final response
+- [x] Increase envelope size significantly
+- [x] Enhance envelope opening animation (flap, letter pop-out, subtle scale/tilt/glow)
+- [x] Ensure large envelope remains centered and responsive on mobile
 - [x] Validate TODO completion status

@@ -237,36 +237,38 @@ button:not(:first-of-type) {
 
 .envelope {
   position: relative;
-  width: 220px;
-  height: 145px;
+  width: min(78vw, 420px);
+  aspect-ratio: 10 / 6.6;
   transform-style: preserve-3d;
-  transition: transform 0.8s ease;
+  transition: transform 0.9s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.9s ease;
+  animation: envelopePulse 2.8s ease-in-out infinite;
 }
 
 .envelope-back {
   position: absolute;
   inset: 0;
-  border-radius: 10px;
+  border-radius: 16px;
   background: linear-gradient(145deg, #ffe6ea, #ffd1dc);
-  box-shadow: 0 12px 30px rgba(90, 0, 20, 0.25);
+  box-shadow: 0 18px 42px rgba(90, 0, 20, 0.34);
 }
 
 .envelope-letter {
   position: absolute;
   left: 50%;
-  top: 52%;
-  width: 82%;
-  height: 72%;
+  top: 54%;
+  width: 84%;
+  height: 74%;
   transform: translate(-50%, -50%);
   background: #fff8fb;
   color: #b00047;
-  border-radius: 8px;
+  border-radius: 12px;
   display: grid;
   place-items: center;
-  font-weight: 700;
+  font-weight: 800;
+  font-size: clamp(1rem, 2.4vw, 1.45rem);
   letter-spacing: 0.3px;
-  box-shadow: 0 6px 18px rgba(80, 0, 20, 0.15);
-  transition: transform 0.7s ease, opacity 0.7s ease;
+  box-shadow: 0 10px 26px rgba(80, 0, 20, 0.2);
+  transition: transform 0.95s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.95s ease;
 }
 
 .envelope-flap {
@@ -275,19 +277,25 @@ button:not(:first-of-type) {
   top: 0;
   width: 100%;
   height: 100%;
-  clip-path: polygon(0 0, 100% 0, 50% 52%);
+  clip-path: polygon(0 0, 100% 0, 50% 56%);
   transform-origin: top center;
   background: linear-gradient(145deg, #ffc5d2, #ffb1c4);
-  border-radius: 10px 10px 0 0;
-  transition: transform 0.8s ease;
+  border-radius: 16px 16px 0 0;
+  transition: transform 0.95s cubic-bezier(0.2, 0.8, 0.2, 1);
+  box-shadow: inset 0 -10px 20px rgba(255, 255, 255, 0.2);
+}
+
+.envelope.open {
+  transform: scale(1.06) rotate(-2deg);
+  filter: drop-shadow(0 14px 28px rgba(120, 0, 45, 0.35));
 }
 
 .envelope.open .envelope-flap {
-  transform: rotateX(180deg);
+  transform: rotateX(190deg);
 }
 
 .envelope.open .envelope-letter {
-  transform: translate(-50%, -74%);
+  transform: translate(-50%, -86%) scale(1.04);
 }
 
 .intro-hint {
@@ -392,10 +400,26 @@ button:not(:first-of-type) {
   }
 }
 
+@keyframes envelopePulse {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+    filter: drop-shadow(0 8px 16px rgba(120, 0, 45, 0.2));
+  }
+  50% {
+    transform: translateY(-4px) scale(1.02);
+    filter: drop-shadow(0 14px 30px rgba(120, 0, 45, 0.32));
+  }
+}
+
 @media (max-width: 560px) {
   .container {
     padding: 1.35rem 1rem 1.2rem;
     border-radius: 18px;
+  }
+
+  .envelope {
+    width: min(90vw, 380px);
   }
 
   button {
