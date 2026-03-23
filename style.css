@@ -70,6 +70,7 @@ body::after {
 .page {
   position: relative;
   width: min(92vw, 760px);
+  margin: 0 auto;
   perspective: 1200px;
   z-index: 1;
   opacity: 0;
@@ -77,9 +78,29 @@ body::after {
   transition: opacity 0.55s ease, transform 0.55s ease;
 }
 
+.page,
+.page .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 .page.enter {
   opacity: 1;
   transform: translateY(0) scale(1);
+}
+
+.page.pre-intro {
+  opacity: 0;
+  transform: translateY(22px) scale(0.98);
+  pointer-events: none;
+}
+
+.page.pre-intro.enter {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
 }
 
 .page.exit {
@@ -162,6 +183,90 @@ button:not(:first-of-type) {
   overflow: hidden;
   pointer-events: none;
   z-index: 0;
+}
+
+.intro-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  background: rgba(120, 0, 35, 0.15);
+  backdrop-filter: blur(2px);
+  cursor: pointer;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.intro-overlay.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.envelope {
+  position: relative;
+  width: 220px;
+  height: 145px;
+  transform-style: preserve-3d;
+  transition: transform 0.8s ease;
+}
+
+.envelope-back {
+  position: absolute;
+  inset: 0;
+  border-radius: 10px;
+  background: linear-gradient(145deg, #ffe6ea, #ffd1dc);
+  box-shadow: 0 12px 30px rgba(90, 0, 20, 0.25);
+}
+
+.envelope-letter {
+  position: absolute;
+  left: 50%;
+  top: 52%;
+  width: 82%;
+  height: 72%;
+  transform: translate(-50%, -50%);
+  background: #fff8fb;
+  color: #b00047;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  box-shadow: 0 6px 18px rgba(80, 0, 20, 0.15);
+  transition: transform 0.7s ease, opacity 0.7s ease;
+}
+
+.envelope-flap {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  clip-path: polygon(0 0, 100% 0, 50% 52%);
+  transform-origin: top center;
+  background: linear-gradient(145deg, #ffc5d2, #ffb1c4);
+  border-radius: 10px 10px 0 0;
+  transition: transform 0.8s ease;
+}
+
+.envelope.open .envelope-flap {
+  transform: rotateX(180deg);
+}
+
+.envelope.open .envelope-letter {
+  transform: translate(-50%, -74%);
+}
+
+.intro-hint {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  text-shadow: 0 2px 12px rgba(90, 0, 20, 0.35);
 }
 
 .heart {

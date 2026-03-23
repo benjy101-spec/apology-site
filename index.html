@@ -12,7 +12,16 @@
     <span class="heart"></span><span class="heart"></span><span class="heart"></span>
   </div>
 
-  <main class="page">
+  <div id="introOverlay" class="intro-overlay" role="button" aria-label="Open envelope to begin" tabindex="0">
+    <div id="envelope" class="envelope">
+      <div class="envelope-back"></div>
+      <div class="envelope-letter">For Faith 💌</div>
+      <div class="envelope-flap"></div>
+    </div>
+    <p class="intro-hint">open the envelope</p>
+  </div>
+
+  <main class="page pre-intro">
     <div class="container">
       <h1>Okay Faith... 😅</h1>
       <p>Important question...</p>
@@ -22,6 +31,10 @@
       <button onclick="goWrong()">You forgot about me 😒</button>
     </div>
   </main>
+
+  <audio id="bgMusic" loop>
+    <source src="music/Hozier - From Eden (320).mp3" type="audio/mpeg">
+  </audio>
 
   <script src="script.js"></script>
 </body>
