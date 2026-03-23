@@ -1,4 +1,4 @@
-- [x] Increase envelope size significantly
-- [x] Enhance envelope opening animation (flap, letter pop-out, subtle scale/tilt/glow)
-- [x] Ensure large envelope remains centered and responsive on mobile
+- [x] Standardize all content boxes to same size across pages
+- [x] Force all page content to exact center of viewport
+- [x] Ensure envelope intro is perfectly centered in viewport
 - [x] Validate TODO completion status
