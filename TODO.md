@@ -1,4 +1,4 @@
-- [x] Standardize all content boxes to same size across pages
-- [x] Force all page content to exact center of viewport
-- [x] Ensure envelope intro is perfectly centered in viewport
-- [x] Validate TODO completion status
+- [x] Add viewport meta tag to all HTML pages (index, batman, q2, final)
+- [x] Improve mobile typography/spacing/sizing in style.css
+- [x] Verify centered layout and envelope behavior are preserved
+- [x] Mark checklist complete

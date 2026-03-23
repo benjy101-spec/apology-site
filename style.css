@@ -413,17 +413,41 @@ button:not(:first-of-type) {
 }
 
 @media (max-width: 560px) {
+  .page {
+    width: 100vw;
+  }
+
   .container {
+    width: calc(100vw - 1.2rem);
+    min-height: auto;
+    max-height: 88vh;
     padding: 1.35rem 1rem 1.2rem;
     border-radius: 18px;
   }
 
+  h1 {
+    font-size: clamp(2rem, 8vw, 2.4rem);
+    margin-bottom: 0.9rem;
+  }
+
+  p,
+  .flower-text {
+    font-size: clamp(1.12rem, 4.7vw, 1.28rem);
+    line-height: 1.45;
+  }
+
+  .intro-hint {
+    font-size: clamp(1.05rem, 4.5vw, 1.2rem);
+  }
+
   .envelope {
-    width: min(90vw, 380px);
+    width: min(92vw, 420px);
   }
 
   button {
-    width: calc(100% - 1rem);
-    margin: 0.5rem 0.5rem 0.1rem;
+    width: calc(100% - 0.4rem);
+    margin: 0.55rem 0.2rem 0.15rem;
+    padding: 0.95rem 1.2rem;
+    font-size: clamp(1rem, 4.4vw, 1.1rem);
   }
 }
