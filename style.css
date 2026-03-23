@@ -68,9 +68,8 @@ body::after {
 }
 
 .page {
-  position: fixed;
-  inset: 0;
-  width: 100%;
+  position: relative;
+  width: min(92vw, 760px);
   margin: 0 auto;
   perspective: 1200px;
   z-index: 1;
@@ -110,10 +109,8 @@ body::after {
 }
 
 .container {
-  width: min(92vw, 860px);
-  min-height: min(80vh, 760px);
-  max-height: 80vh;
-  overflow: auto;
+  width: min(96vw, 860px);
+  min-height: min(82vh, 760px);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   background: var(--panel);
