@@ -66,6 +66,11 @@ function missNo() {
 function forgive() {
   document.getElementById("finalResponse").innerText =
     "You just made me the happiest guy alive ❤️ I promise—no more disappearing acts.";
+
+  const flowerSurprise = document.getElementById("flowerSurprise");
+  if (flowerSurprise) {
+    flowerSurprise.classList.add("show");
+  }
 }
 
 function moveButton(btn) {

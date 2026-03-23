@@ -109,13 +109,15 @@ body::after {
 }
 
 .container {
+  width: min(96vw, 860px);
+  min-height: min(82vh, 760px);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   background: var(--panel);
   border: 1px solid var(--panel-border);
   border-radius: 24px;
   box-shadow: var(--shadow);
-  padding: 2rem 2rem 1.7rem;
+  padding: 2.6rem 2.6rem 2.2rem;
   text-align: center;
   animation: floatIn 0.9s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
@@ -175,6 +177,33 @@ button:not(:first-of-type) {
   font-weight: 600;
   color: #fff;
   text-shadow: 0 2px 12px rgba(90, 0, 20, 0.25);
+}
+
+.flower-surprise {
+  margin-top: 1.25rem;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+}
+
+.flower-surprise.show {
+  display: flex;
+}
+
+.digital-flower {
+  font-size: clamp(3rem, 9vw, 5.2rem);
+  line-height: 1;
+  animation: spinFlower 2.6s linear infinite;
+  filter: drop-shadow(0 6px 16px rgba(90, 0, 20, 0.25));
+}
+
+.flower-text {
+  margin: 0;
+  font-size: clamp(1.05rem, 2.4vw, 1.35rem);
+  font-weight: 700;
+  color: #fff;
 }
 
 .hearts {
@@ -351,6 +380,15 @@ button:not(:first-of-type) {
   }
   to {
     filter: saturate(1.15) brightness(1.07);
+  }
+}
+
+@keyframes spinFlower {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
   }
 }
 
